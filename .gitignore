@@ -1,0 +1,7 @@
+/target
+*.lock
+*.swp
+**/*.swp
+*.db 
+.env
+*.js
