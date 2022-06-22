@@ -1,4 +1,4 @@
-//! **Stream-Util** is a handy tool deal with stream, it provides
+//! **Streamer** is a handy tool deal with stream, it provides
 //! a set of structs and trait to stream
 //! - `File`
 //! - `String`
@@ -12,7 +12,7 @@
 //! echo "1234567890abcdefghijklmnopqrstuvw" >> info
 //! ```
 //! ```rust no_run
-//! use stream_util::{Stream, StreamExt, Streaming};
+//! use streamer::{Stream, StreamExt, Streaming};
 //! async fn run() {
 //!     let file = File::open("info").unwrap();
 //!     let streaming = Streaming::from(file);
