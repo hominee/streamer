@@ -63,6 +63,13 @@ Since I am heavy user of [hyper](https://hyper.rs),
 send body of request is not that convenient as others
 especially for streaming `image`, `video` `document` and so on.
 it enable you stream large file in chunks in HTTP Format
+
+To use, enable `hyper` feature 
+```toml
+[dependencies]
+streamer = { version = "*", features = ["hyper"] }
+```
+
 ```rust 
 use hyper::{Body, Request}:
 let file = File::open("info").unwrap();
