@@ -5,7 +5,9 @@
 //! - `&'static str`
 //! - `Vec<T>`
 //! - `[T; N]`
-//! - `Box<[u8]>`
+//! - `Box<[T]>`
+//!
+//! # Quick Start
 //!
 //! Some example to walk you through:
 //! ```bash
@@ -54,13 +56,27 @@
 //! [5, 6, 7, 8]
 //! [9, 0]
 //! ```
-//! ## Features to Add
 //!
-//! Since I am heavy user of [hyper](https://hyper.rs)
+//! # Hyper Body Integration
+//! Since I am heavy user of [hyper](https://hyper.rs),
 //! send body of request is not that convenient as others
 //! especially for streaming `image`, `video` `document` and so on.
+//! it enable you stream large file in chunks in HTTP Format
+//! ```rust no_run
+//! use hyper::{Body, Request}:
+//! let file = File::open("info").unwrap();
+//! let mut streaming = Streamer::new(file);
+//! streaming.meta.set_buf_len(10); // length sent as a chunk, the default is 64kB
+//! streaming.meta.set_name("doc"); // field name
+//! streaming.meta.set_filename("info"); // file name
+//! let body: Body = streaming.streaming();
+//! // build a request
+//! let request: Request<Body> = Request::post("<uri-here>").body(body).expect("failed to build a request");
+//! ```
 //!
-//! - [ ] Streaming large file chunks in HTTP Format
+//! it will sennd the file `info` in 10-bytes chunks, each chunk are formated into HTTP `multipart/form-data`, with this you can split large file and stream it chunks by chunks.
+//!
+//! ## Features to Add
 //!
 //! May be some compression could be done to lower network traffic
 //! - [ ] Streaming Chunks Compression
@@ -68,5 +84,8 @@
 
 pub mod streaming;
 pub use streaming::Streaming;
+
+#[cfg(feature = "hyper")]
+pub mod hyper;
 
 pub use futures_util::{Stream, StreamExt};
