@@ -2,6 +2,7 @@
 name = "streamer"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 keywords = [ "futures-util", "futures", "async", "stream"]
 categories = ["network-programming", "web-programming"]
 description = "Streamer is a handy tool deal with stream"
