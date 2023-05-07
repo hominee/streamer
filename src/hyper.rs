@@ -4,15 +4,15 @@ use hyper::{body::Bytes, Body};
 use std::io;
 
 pub struct Streamer<T> {
-    src: Streaming<T>,
-    meta: Meta,
+    pub src: Streaming<T>,
+    pub meta: Meta,
 }
 
 pub struct Meta {
-    name: Option<String>,
-    filename: Option<String>,
-    boundary: Boundary,
-    buf_len: usize,
+    pub name: Option<String>,
+    pub filename: Option<String>,
+    pub boundary: Boundary,
+    pub buf_len: usize,
 }
 impl Meta {
     pub fn set_filename<T: Into<String>>(&mut self, filename: T) {
