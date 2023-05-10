@@ -39,7 +39,7 @@ impl Meta {
         if self.filename.is_none() {
             "".into()
         } else {
-            format!(" name=\"{}.{}\";", self.filename.as_ref().unwrap(), ind)
+            format!(" name=\"{}\";", self.filename.as_ref().unwrap())
         }
     }
 
